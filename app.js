@@ -8,8 +8,9 @@ const app = express();
 app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
+const cors = require('cors');
 require('./service-log/logging-format')
-
+io.set('origins', '*:*')
 io.on("connection", socket => {
   console.log("New client connected"), setInterval(
     () => getApiAndEmit(socket),
