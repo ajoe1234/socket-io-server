@@ -8,6 +8,7 @@ const app = express();
 app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
+require('./service-log/logging-format')
 
 io.on("connection", socket => {
   console.log("New client connected"), setInterval(
@@ -21,7 +22,7 @@ const getApiAndEmit = async socket => {
     const res = await axios.get(
       "https://wpe1.net/api/argy/v1/history"
     );
-    socket.emit("FromAPI", res.data[0]);
+    socket.emit("FromAPI", res.data);
   } catch (error) {
     console.error(`Error: ${error.code}`);
   }
