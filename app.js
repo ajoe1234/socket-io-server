@@ -19,7 +19,6 @@ const server = http.createServer(app);
 const io = socketIo(server);
 require('./service-log/logging-format')
 io.set('origins', '*:*')
-io.set('transports', ['websocket'])
 io.on("connection", socket => {
   console.log("New client connected"), setInterval(
     () => getApiAndEmit(socket),
