@@ -4,12 +4,16 @@ const socketIo = require("socket.io");
 const axios = require("axios");
 const port = process.env.PORT || 4001;
 const index = require("./routes/index");
+const cors = require('cors')
 const app = express();
 app.use(index);
+app.use(cors())
+
 const server = http.createServer(app);
 const io = socketIo(server);
 require('./service-log/logging-format')
 io.set('origins', '*:*')
+io.set('transports', ['websocket'])
 io.on("connection", socket => {
   console.log("New client connected"), setInterval(
     () => getApiAndEmit(socket),
