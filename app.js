@@ -1,5 +1,5 @@
 const express = require("express");
-const http = require("http");
+const https = require("https");
 const socketIo = require("socket.io");
 const axios = require("axios");
 const port = process.env.PORT || 4001;
@@ -10,7 +10,7 @@ app.use(index);
 app.use(cors());
 
 
-const server = http.createServer(app);
+const server = https.createServer(app);
 const io = socketIo(server);
 require('./service-log/logging-format')
 io.on("connection", socket => {
