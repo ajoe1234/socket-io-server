@@ -11,7 +11,7 @@ app.use(cors());
 
 
 const server = https.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server).listen(server);
 require('./service-log/logging-format')
 io.on("connection", socket => {
   console.log("New client connected"), setInterval(
