@@ -9,7 +9,7 @@ const app = express();
 app.use(index);
 app.use(cors());
 
-
+socketIo.path('/socket');
 const server = http.createServer(app);
 const io = socketIo(server).listen(server);
 require('./service-log/logging-format')
